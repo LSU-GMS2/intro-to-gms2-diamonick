@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch2 - Page 3</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="page03.html">Positioning on Screen Part 1</option>
+					<option value="page04.html">Positioning on Screen Part 11</option>
+					<option value="page05.html">Positioning on Screen Part 11I</option>
+					<option value="page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="../ch3/page01.html">Moving NPC</option>
+					<option value="../ch3/page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<optgroup label="Chapter 1 - Manipulating Text">
+						<option value="../page01.html"><b>Hello World</b></option>
+						<option value="../ch1/page02.html">Variables</option>
+						<option value="../ch1/page03.html">Data Types</option>
+						<optgroup label="Logic, Positioning & Errors">
+					<option value="page01.html">If Statements</option>
+					<option value="page02.html">Loops</option>
+					</optgroup>
+					</optgroup>
+	
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+
+<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+
+<p style="color:rgb(85, 109, 130)">
+	<b>Positioning on Screen Part I</b>
+
+<p>
+	So why does <tt><b>draw_text(room_width * .5, line_height, "Message");</b></tt> draw to the screen in the location that it does?  What is <tt><b>x</b></tt> and what is <tt><b>y</b></tt>?  What does <tt><b>room_width</b></tt> represent?
+
+<p>
+	Lets look at this is some detail.  We are positioning objects on the screen using the <a href ="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="blank">cartesian coordinate system</a>.
+
+<p>
+	You have most likely seen this in school, it is a two axis representation of an two dimensional area with an x-axis that runs East/West and a y-axis that runs North/South. 
+	
+<p>
+	The intersection of the two axis is point (0,0).  The X axis is positive towards the right and the Y axis is positive upwards.
+
+<p>
+	It looks like:
+
+<p>
+	<img class="center" src="images/CartesianCoordinateSytem.gif" alt="Illustratoin of cartesian coordinate system">	
+
+<p>
+	To position points we move along the X & Y axis.  So for position (2, -2) we go two positions to the right on the x axis (away from (0,0)) and two positions down on the y axis.  For point (-2, 4) we go two to the left on the x axis and four upwards in y.  So they end up here:
+
+<p>
+	<img class="center" src="images/TwoPointsOnCartesianPlane.gif" alt="Putting two points in cartesian coordinate system">	
+
+<p>
+	GameMaker is slightly different.  First point (0,0) is at the top left corner of the room.  Y is positive going down and negative moving upwards. So the quadrant that the room is in is all x-axis positive and y-axis positive.  Moving downscreen is also y positive.  The top right corner of the room is the (0, <tt><b>room_width</b></tt>). The bottom left corner is (0, <tt><b>room_height</b></tt>) and the bottom right is (<tt><b>room_width</b></tt>, <tt><b>room_height</b></tt>).  The top center is (room_width/2, 0).  The middle center is (room_width/2, room_height/2).  
+
+<p>
+	<img class="center" src="images/GameMakerCartesianPlanA.gif" alt="GameMaker coordinate system">	
+
+
+<p>
+	Open the room <tt><b>rm_data_types</b></tt>. We do not use hard coded numbers for the room height and width.  That way we can change the size of the room and our game will still work.  If you go to the room you will see the <tt><b>Width</b></tt> and <tt><b>Height</b></tt> and these are the same values stored in <tt><b>room_width</b></tt> and <tt><b>room_height</b></tt>.
+
+<p>
+	<img class="center" src="images/RoomWidthHeight.gif" alt="Look at width and height in room">	
+
+<p>
+	Run the game and look at the code that positions the text.  The <tt><b>x</b></tt> axis for the text is set to room_width * .5 (same as diving room_width /2).  The height is incremented by 22 (the setting of <tt><b>line_height</b></tt>).  
+
+<p>
+	<img class="center" src="images/ExistingRoomPositioning.gif" alt="Run game and look at spacing">	
+
+<p>
+	So if we want to draw a line underneath, then we can figure out 19 steps of 22 pixels down on the y-axis.  This gets us to <tt><b>418</b> </tt> on the <tt><b>y</b></tt> axis. The x-axis would go from 0 to room_width to draw a line right across the screen.
+
+<p>
+	<img class="center" src="images/LineDrawUnderneath.png" alt="Shows each line pixel height">	
+	
+<p>
+	Let's use <b><a href="gms2tutorials:///ShowHelp?tag=draw_line"><tt>draw_line(x1, y1, x2, y2)</tt></a></b>. (x1, y1) is the start of the line and (x2, y2) is the end of the line. We are also going to use <b><a href="gms2tutorials:///ShowHelp?keyword=draw_set_color"><tt>draw_set_color(color)</tt></a></b>.  We will pass as an argument to this function the enumerator <tt><b>c_yellow</b></tt>.  We will reset the color back to white after drawing the line.  Type the following to the bottom of the <tt><b>obj_data_types_controller</b></tt> Draw Event:
+
+<p>
+	<img class="center" src="images/DrawLineBottom.png" alt="Adds line to very bottom of room">	
+
+<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. We should see a yellow line under the text.
+
+<p>
+	<img class="center" src="images/LineUnderWordsInGame.png" alt="Run game with yellow line at bottom">	
+
+<p>
+	To prove our assumptions correct lets un-hard code the y-axis value to <tt><b>line_height * 19</b></tt> and run the game.  It should look the same as before.
+
+<p>
+	<img class="center" src="images/LineHeightForYLineDraw.png" alt="Change y vaue to variable for yellow line">	
+
+<p>
+	Lets look at placing 2-D sprites, something more game-y, into this 2D room.  We will put a red triangle, blue square and green circle on line 25 from the far left, center and right respectively.  We want it to look like: 
+
+<p>
+	<img class="center" src="images/ConceptArtForPlacement.png" alt="Concept art for 3 new objects we will add">	
+
+<p>
+	Lets start by drawing another line on line 25.  You can just repeat the previous line draw but change it slightly.  Type in another line draw like so:
+
+<p>
+	<img class="center" src="images/DrawOnLine25ANewLine.png" alt="Add a second line to frame new objects">	
+
+<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. We should see a second yellow line.
+
+<p>
+	<img class="center" src="images/Line25InGame.png" alt="Run game with two yellow lines at bottom">	
+
+<p>
+	We want to create a new sprite.  <img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click the right mouse button on the <tt><b>Sprite</b></tt> title in the <tt><b>Resources</b></tt> tab and select <tt><b>Create Sprite</b></tt>. Change the name to <tt><b>spr_triangle</b></tt>. 
+
+<p>
+	<img class="center" src="images/CreateTriangleSprite.gif" alt="Add a triangle sprite">	
+
+<p>
+	Look at the the sprite tab and see the size of the sprite.  It defaults to 64 by 64 pixels which we will keep.  Please note that this size is a mutliple of 8, something that is very common when selecting sprite sizes.  Once you have seen this screen press the <tt><b>Edit Sprite</b></tt> button to create the actual artwork.
+
+<p>
+	<img class="center" src="images/DefaultSpriteSize.png" alt="Edit triangle sprite">	
+
+<p>
+	We want the triangle to be red.   <img style="vertical-align:middle" src="../images/Icon_LMB.png"> Press the left mouse button on the red color in the palette to pick the fill color that we want.  Select the lower right half of the <tt><b>Polygon Tool</b></tt>.  The top left is the stroke and the bottom right is the fill.  We just need to set a fill color for this sprite.
+
+<p>
+	<img class="center" src="images/RedTrianglePrep.png" alt="Draw red triangle">	
+
+<p>
+	We want to draw all of our sprites to be facing to the right hand side of the screen.  The starting rotation for all sprites is right facing (positive along the x-axis).  Start to draw it by pressing top left corner, middle right corner, bottom left corner then left center about 20 pixels in to give it a tail.
+
+<p>
+	<img class="center" src="images/DrawTrianglePolygon.gif" alt="GIF of drawing triangle">	
+
+<p>
+	The triangle sprite should look like this:
+
+<p>
+	<img class="center" src="images/RedTirangleDrawn.png" alt="Finished red triangle facing right">	
+
+<p>
+	We want to create another sprite, this time a blue square.  <img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click the right mouse button on the <tt><b>Sprite</b></tt> title in the <tt><b>Resources</b></tt> tab and select <tt><b>Create Sprite</b></tt>. Select Change the name to <tt><b>spr_square</b></tt>.  Once you have seen this screen press the <tt><b>Edit Sprite</b></tt> button to create the actual artwork.  <img style="vertical-align:middle" src="../images/Icon_LMB.png"> Press the left mouse button on the blue color in the palette to pick the fill color that we want.  Select the the <tt><b>Fill Tool</b></tt> and click within the window.
+
+<p>
+	<img class="center" src="images/DrawBlueSquare.gif" alt="Create blue square sprite">	
+
+	Repeat this one last time for a sprite called <tt><b>spr_circle</b></tt>.  Press <tt><b>Edit Sprite</b></tt> and select the green color and the bottom right of the <tt><b>Draw Circle</b></tt> tool and draw a nice green circle.  Make sure it fills the entire 64 b6 64 frame and is symmetrial in all four corners.
+
+<p>
+	<img class="center" src="images/DrawGreenCircle.gif" alt="Create a green circle sprite">	
+
+<p>
+	The circle sprite should look like the below picture.  Now you should have three completed sprites that we need.  On the next page we will move to the next step and draw them on screen.
+
+<p>
+	<img class="center" src="images/AllThreeSprites.png" alt="Finished circle sprite">	
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page02.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="page04.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

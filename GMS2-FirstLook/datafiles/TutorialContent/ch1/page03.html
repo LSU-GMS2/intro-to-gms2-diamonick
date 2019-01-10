@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch1 - Page 3</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Chapter 1 - Manipulating Text">
+		
+					<option value="page03.html">Data Types</option>
+				</optgroup>
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="../ch2/page01.html">If Statements</option>
+					<option value="../ch2/page02.html">Loops</option>
+					<option value="../ch2/page03.html">Positioning on Screen Part I</option>
+					<option value="../ch2/page04.html">Positioning on Screen Part II</option>
+					<option value="../ch2/page05.html">Positioning on Screen Part III</option>
+					<option value="../ch2/page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="../ch3/page01.html">Moving NPC</option>
+					<option value="../ch3/page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<option value="../page01.html"><b>Hello World</b></option>
+					<option value="page02.html">Variables</option>
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+	
+	<p style="color:rgb(85, 109, 130)">
+	<b>Data Types</b>
+
+	<p>
+		Up until this point we have been working with a text variable.  A variable stores a specific data type.  Text is considered a <tt><b>String</b></tt> data type.  Read more about <b><a href="gms2tutorials:///ShowHelp?keyword=undefined">data types</a></b> in the GameMaker manual.  
+
+	<p> 
+		Lets create a new room and look at some more data types.  Right click on the <tt><b>Rooms</b></tt> title in the <tt><b>Resources</b></tt> menu.  Select <tt><b>Create Room</b></tt> then change the name to <tt><b>rm_data_types</b></tt> and drag this to the first room in the list.  This is important as GameMaker loads the first room in this list.  We now want to load this new room.
+
+	<p>
+		<img class="center" src="images/AddSecondRoom.gif" alt="Create a second room and call it rm_data_types">
+	
+	<p> 
+		Lets now create another object that will be responsible for controlling all elements unique to this level.  <img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click on <tt><b>Object</b></tt> in the <tt><b>Resources</b></tt> menu, then select <tt><b>Create Object</b></tt> and call it <tt><b>obj_data_types_controller</b></tt>.
+
+	<p>
+		<img class="center" src="images/CreateObjDataTypes.gif" alt="Create a second object and call it obj_data_types_controller">
+
+	<p> 
+		Now in this newly created object <img style="vertical-align:middle" src="../images/Icon_LMB.png"> left click on the <tt><b>Add Event</b></tt> button and add a <tt><b>Draw | Draw</b></tt> event:
+	
+	<p>
+		<img class="center" src="images/AddDrawObjDataType.gif" alt="Add a Draw Event to obj_data_types_controller">
+
+	<p> 
+		Now lets take a look at the newly created script.  The first line is special and has unique section that has <tt><b>/// @description </b></tt>.  This tells the IDE that this is the title of this script and what follows it shows up in the <tt><b>Events</b></tt> list window. Properly naming this makes it easier to find code that you wrote previously. 
+
+	<p>
+		<img class="center" src="images/InsertDescriptionHere.png" alt="Look at special meaning of ///@ description">
+
+	<p> 
+		Now lets go to this newly created draw event and update the description and the first line of help to demonstrate what we will do next.  Type this, press <b>Save</b> and see that what follows <tt><b>/// @description </b></tt> now shows up in the <tt><b>Events</b></tt> window:
+
+	<p>
+		<img class="center" src="images/AddDescriptionToDataTypes.png" alt="Type comments in obj_data_types_controller object">
+
+	<p> 
+		Lets reopen <tt><b>obj_hello_world_text</b></tt> and adjust the help text to have <tt><b>/// @description </b></tt> at the beginning of the first line.  Now what follows <tt><b>/// @description </b></tt> now shows up in the <tt><b>Events</b></tt> window:
+
+	<p>
+		<img class="center" src="images/FixDescirptionOnHWObject.png" alt="Fix description comment in obj_hello_world_text object">		
+		
+	<p> 
+		Go back to <tt><b>obj_data_types_controller</b></tt> and press the <img style="vertical-align:middle" src="../images/Icon_LMB.png"> <tt><b>VariableDefinitions</b></tt> button. Add a variable named <tt><b>age</b></tt> and set the value to your age (mine is 51).  Leave it as type <b>Real</b>.  Add another variable named <tt><b>line_height</b></tt> and set the <b>Value</b> to <tt>32</tt>.  We will use this to space each line by 32 pixels.  Leave this as a <tt><b>Real</b></tt> number.
+
+	<blockquote>
+		<i>"	Real numbers are any value that is not a string, nor any of the other possible data types. So, 124, 45639.566546456, 0, -45.5 etc... are all examples of real numbers. All real numbers are stored as double-precision floating point values (even seemingly integer values), so you may experience slight rounding errors when dealing with these." - GameMaker Manual</i>
+	</blockquote>
+
+	<p>
+		<img class="center" src="images/TwoFirstVariablesInDataTypes.png" alt="Add two new variables to this object called age and line_height">		
+
+	<p> 
+		Drag an instance of <tt><b>obj_data_types_controller</b></tt> to the edge of the new <tt><b>rm_data_types</b></tt> room.  You can put it on the outside of the room as it is just there to run code, we will not use its position on screen.
+
+	<p>
+		<img class="center" src="images/AddLevelControllerOffScreen.png" alt="Drag a copy of obj_data_types_controller to the room">		
+	
+	<p> 
+		Go to the <tt><b>obj_data_types_controller</b></tt> <b>Draw</b> event script window.  Start by aligning the text to the horizontal center.  Then draw the text and don't use the built in <tt><b>x</b></tt> and <tt><b>y</b></tt> variables. Since we placed it off screen we will position the text where we want it.  We will use <tt><b>room_width</b></tt> times 0.5 (same as dividing the room_width variable by half).  We set the <tt><b>y</b></tt> value at our current <tt><b>line_height variable</b></tt>.  Then we reset the horizontal alignment to its default. Type the following into your draw script:
+
+	<p>
+		<img class="center" src="images/DrawFirstLineScript.png" alt="Add script to print age on screen">		
+
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  You should see the age you entered printed in the top center of the screen:
+		
+	<p>
+		<img class="center" src="images/RunGameAgePrinted.png" alt="Run game and see age printed on top of game screen">
+
+	<p>
+		Now we can do other things with real numbers, we can perform mathematical operations on them.  So we can evaluate: 51 + 20 * 2.  Remember the order of operations, as this will evaluate as 51 + (20 * 2).  So lets make this change and add a second line to our on screen text.  We advance the <tt><b>y</b></tt> value by multiplying line_height by 2.  This will move it down one line.  We will also not use the real number 51, we will use the variable age. Add another comment and line like so:
+		
+	<p>
+		<img class="center" src="images/AddSecondLineMathOp.png" alt="Enter second line with mathematical operation">
+
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <b>Play Button</b> in the top menu bar to launch the game.  You should see the second line that clearly state 91.  This means that the order of operations behaved as we expected.
+		
+	<p>
+		<img class="center" src="images/MathOperationsInGame.png" alt="Run game with two ages printed on screen">
+
+		<p>
+		Lets clean up a few things.  The spacing is a bit too big for the font that is default on my computer.  Go to the <tt><b>Variable Definitions</b></tt> tab and change the <tt><b>Value</b></tt> to <tt><b>22</b></tt>.
+		
+	<p>
+		<img class="center" src="images/ChangeLineHeight.png" alt="Alter line_height to 22">
+
+	<p>
+		Go back to the <tt><b>Draw</b></tt> event script and put brackets around the multiplication.  Even though this makes no difference, it will help you or others to better understand what you mean.  There is no downside to being more explicit, the compiler will generate the same end result.  It is just a clearer expression of your intent.
+
+	<p>
+		<img class="center" src="images/OrderOfOps.png" alt="Add parenthesis for mathematical operations">
+		
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  You should see a tighter spacing that looks a bit better.  Notice that the answer is still 91 so the brackets did not change anything in the execution.
+
+	<p>
+		<img class="center" src="images/NewlySpacedSecondLine.png" alt="Run game with two different ages with improved line spacing">
+
+		<p>
+		The final data type we will look at for now is called a <tt><b>Boolean</b></tt>.  A boolean resolves to either 1 (true) or 0 (false). It is preferable to use the words <tt><b>true</b></tt>  and <tt><b>false</b></tt> when refering intead of 0 and 1.  But if you print a boolean value we will only see the number.  
+
+		In GameMaker any real number above .5 will resolve to <tt><b>true</b></tt> and any number less will be <tt><b>false</b></tt>.  Now we can't seleft a boolean type we need to cast a real number to a boolean.  We do this by typing <tt><b>(bool)real_number_to_convert</b></tt>.  So lets add two more lines and print the boolean result of 3 and -300.
+
+	<p>
+		<img class="center" src="images/BooleanTrueAndFalse.png" alt="Add two new prints printing a true and false boolean">
+		
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  You should see a tighter spacing that looks a bit better.  Did you see what you expected. According to the above rules the 3 resolved to true and the -300 resolved to false.
+
+	<p>
+		<img class="center" src="images/BooleanExpressionInGame.png" alt="Run game with two more boolean messages">
+
+	<p>
+		Previously we were able to add two real numbers together to perform a mathematical operation.  We can also combine strings together.  Instead of a mathematical operation it performs a concatonation.  It puts both strings together as a longer string.
+
+	<p>
+		Lets add a fifth line to the printing and concatonate some strings.  Lets add two more <tt><b>Variable Definitions</b></tt> to the <tt><b>obj_data_types_controller</b></tt>.  We will add one to hold a first and last name and make them both <tt><b>Strings</b></tt>.
+
+	<p>
+		<img class="center" src="images/AddLastAndFirstName.png" alt="Add two variables first_name and last_name">
+
+	<p>
+		Now lets string a sentence together.  We can concatonate string varialbes with strings. We also need spaces between words.  So we can add <tt><b>"Hello " + first_name + " " + last_name + "!"</b></tt> as a fifth line.  Add the following 5th text string to our <tt><b>Draw</b></tt> script:
+
+	<p>
+		<img class="center" src="images/StringConcatonation.png" alt="Concatonate multiple strings">
+
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  You should see an entire sentence print on the fifth line as it combines all the strings together.
+
+	<p>
+		<img class="center" src="images/StringConcatonationInGame.png" alt="Run game and see concatonated sentence">
+
+	<p>
+		So a real number + a real number will perform an addition.  A string + a string will perform a concatonation.  What if we add a string to a real number together.  Lets give it a try. Go back to the first line we printed and add the string and real number <tt><b>"I am " + age + " years old."</tt></b>
+
+	<p>
+		<img class="center" src="images/ConcatonateStringAndReal.png" alt="Add a real and string together">
+		
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  Woops we now get our first run time error.  What does this mean?  This means it compiles succesfully but when that line is run in game (it is run right away) it asserts to an error. The error tells us which script it is in and the event type (Draw Event obj_data_types_controller).  The error message "DoAdd" isn't very helpful.  Essentially GameMaker can't handle adding a String and a Real number together.  But there is a solution.
+
+	<p>
+		<img class="center" src="images/RunTimeConcatonationError.png" alt="Run game and get a runtime error">
+
+	<p>
+		Just as we cast a real number to a boolean we can cast a Real Number to a String.  What casting does is changes from one data type to another.  There is a function called <tt><b>string()</b></tt> in which it casts the value to a string data type. Edit the scipt and pass the age real number variable as an argument to the <tt><b>string()</b></tt> function like so:
+
+	<p>
+		<img class="center" src="images/CastRealToString.png" alt="Cast real to string">
+		
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt>Play Button</tt><b></b> in the top menu bar to launch the game. It works fine as we are back to concatonating multiple strings together because of the cast.
+
+	<p>
+		<img class="center" src="images/StringCastConcatonationInGame.png" alt="Run game and see concatonated casted string and real number">
+
+	<p>
+		Now inside the cast we can still perform arithmetic operations on the real numbers and it will perform this before casting it to a string.  On the second line surround the mathematical operation with a <tt><b>string(age + (20 * 2))</b></tt> like so:
+	
+	<p class="code">
+		//Performs mathematical operation on second line<br>
+		draw_text(room_width * .5, line_height * 2, "In 40 years I will be " + string(age + (20 * 2)) + "." );
+
+	<p>
+		<img class="center" src="images/ConcatonateAndDoMath.png" alt="Mathematical problem within a cast">
+
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game. Now it concatonates the two strings but only after it has performed the arithmetic operations:
+
+	<p>
+		<img class="center" src="images/DoMathAndConcatonateInGame.png" alt="Run game it still performs cast on the result of a mathematical problem">
+
+	<p>
+		Even cooler is that we can nest casts.  So we can cast the <tt><b>(bool)real_number</b></tt> to a string.  Lets make a sentence out of our boolean comparisons and double cast:
+
+	<p class="code"> "3 in boolean resolves to: " + string(bool(3))<br>
+		"-300 in boolean resolves to: " +  string(bool(-300)) 
+
+	<p>
+		<img class="center" src="images/DoubleCast.png" alt="Double cast and stringefy a bool in a nester structure">
+
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game. All the lines are now concatonating strings that are cast from either booleans or real numbers.
+
+	<p>
+		<img class="center" src="images/DoubleCastInGame.png" alt="Run game and see a double cast concatonation">
+		
+	<p>
+		In the next chapter we will look at basic logic, positioning in level and dealing with errors. We will start with if statements.
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page02.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="../ch2/page01.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

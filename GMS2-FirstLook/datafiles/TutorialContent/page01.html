@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch1 - Page 1</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Chapter 1 - Manipulating Text">
+					<option value="page01.html"><b>Hello World</b></option>
+					<option value="ch1/page02.html">Variables</option>
+					<option value="ch1/page03.html">Data Types</option>
+				</optgroup>
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="ch2/page01.html">If Statements</option>
+					<option value="ch2/page02.html">Loops</option>
+					<option value="ch2/page03.html">Positioning on Screen Part I</option>
+					<option value="ch2/page04.html">Positioning on Screen Part II</option>
+					<option value="ch2/page05.html">Positioning on Screen Part III</option>
+					<option value="ch2/page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="ch3/page01.html">Moving NPC</option>
+					<option value="ch3/page02.html">Moving Player</option>
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+	
+	<p style="color:rgb(85, 109, 130)">
+	<b>Hello World</b>
+	
+	<p>
+		This tutorial is intended for those wanting an introducton to <i>GameMaker Studio 2</i> using their scrpting language <i>GML</i>. This assumes no prior knowledge of the software or scripting. Unlike other tutorials, I have left the scripting in images so you can't cut and paste the text. When learning to script for the first time I think it is very important to type it in yourself and get used to making mistakes and develop an understanding of what you are typing does to the game engine.
+		
+	<p>
+		This is a primer before moving forward and creating your first game.  It is intended to demonstrate some fundamental concepts in the <b>IDE</b>, <i>GML</i>, and some very basic <i>game algorithms</i>.  
+		
+	<p>
+		Lets start by manipulating text in the room.
+
+	<p>
+		In GameMaker all of our resources are stored in the <tt><b>Resources</b></tt> menu.  By default it is in the right hand side of the screen (although you can change its location as these tabs can be redocked).  All of our art, audio, scripting and other elements will be stored here in the appropriate area.  
+	
+	<p>
+		All projects in <i>GameMaker Studio 2</i> start with a room called <tt>room0</tt>. A room represents a level of your game.  You can have multiple rooms thus multiple levels. If you don't see the room in the <tt><b>Resources</b></tt> menu then press the <img style="vertical-align:middle" src="images/Icon_Arrow.png"> right arrow next to the <tt><b>Rooms</b></tt> title to open up all the rooms in this folder. You can then press the middle <img style="vertical-align:middle" src="images/Icon_MakeFitZoom.png"> <b>Zoom</b> icon with the <b>=</b> in it to reset the zoom level.
+		
+	<p>
+		<img class="center" src="ch1-page1-images/OpenDefaultRoom.gif" alt="Open default room that comes with Gamemaker">
+		
+	<p> 
+		Now we should rename the room to something more appropriate.  It is a good idea to always preface the names with what Resource type we are using.  We will append the room names with <tt><b>rm_</b></tt> and call it <tt><b>rm_hello_world</b></tt> by <img style="vertical-align:middle" src="images/Icon_RMB.png"> right clicking on the room and selecting <tt><b>Rename</b></tt> from the drop down menu and then type in the new name for the room:
+
+	<p>
+		<img class="center" src="ch1-page1-images/RenameRoom.gif" alt="Opens default room that comes with Gamemaker">
+
+	<p> 
+		Lets print the words "Hello World" in the middle of the room.  For this we will need to add an <tt></tt><b><a href="gms2tutorials:///ShowHelp?tag=quick_start">Object</a></b> (to get help click on <tt><b>Resources | Objects</b></tt>) . We cannot add animations, logic, text in a room witout having it associated with a <tt><b>Game Object</b></tt>.  This is a container that has many of pre-existing variables and functionality.  
+				
+	<p>
+		Go to the <tt><b>Resources</b></tt> menu on the right and <img style="vertical-align:middle" src="images/Icon_RMB.png"> right click on the <tt><b>Object</b></tt> heading that is partially greyed out.  Select <tt><b>Create Object</b></tt>.  This will add the default <tt><b>Game Object</b></tt> to our <tt><b>Workspace</b>.</tt>  Notice that in our main window it has a tab that says <tt><b>Workspace1</b></tt>.  This is the area where we will be customizing the game objec.  Go to the <tt><b>Name:</b></tt> input box and change the <tt><b>Name</b></tt> from <tt><b>object1</b></tt> to <tt><b>obj_hello_world_text</b></tt>.
+
+	<p>
+		<img class="center" src="ch1-page1-images/ObjHelloWorld.gif" alt="Adds a GameObject and names it obj_hello_world_text">
+
+	<p>
+		Now we have a game object.  Normally we would attach an animation to it to play in the game.  In this case we will use the object to draw text on the screen.  GameMaker objects are controlled through <b><a href="gms2tutorials:///ShowHelp?tag=events">Events</a></b>.
+
+		<blockquote><i> "These events fall into two categories: those that run every single game step, and those that are "triggered" by a game event, like the instance reaching the room edge or a keyboard or mouse press. - GameMaker Manual"</i></blockquote>
+
+	<p>
+		In this case we do not have any art to attach to the sprite so we will need to draw a font on screen.  This is done through a <tt><b>Draw</b></tt> event.  All the draw events are a type that run <b>every</b> step.  There are different types of draw events but the two we will care about now are <tt><b>Draw</b></tt> and <tt><b>Draw GUI</b></tt>.  <tt><b>Draw GUI</b></tt> will draw to the camera space and will be in the same portion of the camera regardless of where the camera is located in the level.  With a regular <tt><b>Draw</b></tt> event the draw will be relative to the level.  Since we want to place this text in the level we will use a draw event. <img style="vertical-align:middle" src="images/Icon_LMB.png">Left click on the <tt><b>Add Event</b></tt> button in the <tt><b>Events</b></tt> tab of the game object and select <tt><b>Draw | Draw</b></tt>. This will bring out a scripting window that will allow us to add some game logic to this event type.
+	<p>
+		<img class="center" src="ch1-page1-images/AddDrawEvent.gif" alt="Adds a Draw Event to the game object">
+
+	<p>
+		This brings up a scripting tab (notice the green lines connect the related tabs together so you don't get confused).  This is where we add scripting for game logic.  The very first thing we are going to start with is add comments.  When you are starting out this is usually the part that is counter-intuitive.  When we write an essay we usually don't add comments to describe what we are writing.  
+		
+	<p>
+		With game logic it is important to document what we are doing as if we come back to it in a few weeks, we will have forgot what we have done.  It is better to err on too many and verbose a comment than none at all.  It will not affect the performance of the game and the player will never end up seeing them (they will not get compiled into the playable build). Comments are not interpreted by the computer and don't turn into logic.  They are human readable and are for the development team.  If you have two forward slashes at the begining of any line it turns that entire line of text into a comment and in GameMaker's default settings turns green.
+		
+	<p>
+		We added the comments:
+
+	<p>
+		<img class="center" src="ch1-page1-images/CommentsOnDrawEvent.png" alt="Adds a starting comment to draw event script">
+
+	<p>
+		To draw text to a screen we need to call a <b><a href="gms2tutorials:///ShowHelp?tag=functions">Function</a></b>.  What is a function?  It is a way of allowing us to do a similar task over and over again without retyping all the code again.  If you are copying and pasting the same blocks of code to use in multiple places, you should consider turning it into a function.  
+
+	<p>
+		Think of the function as a factory.  That factory can receive input and it can output one thing for you.  For example we might have a function called <b><tt>average(num, num, num ...)</tt></b>.  This calles a function named <b>average</b> and will send it multiple numbers.  Lets look at this in Pseudo Code:
+
+	<p class="code">
+		average(3, 8, 10);
+	
+
+	<p>
+		A function is a name followed by a set of parentheses.  Inside the parenthesis are <b>Parameters</b> that are passed to the function.  These are comma separated (spaces don't matter here).  In this case we are passing three number parameters to this function. This function would return the average of these three numbers (the equivalend of (3 + 8 + 10) / 3) which is 7.
+
+	<p>
+		In our case we will be calling a function named <b><a href="gms2tutorials:///ShowHelp?tag=draw_text"><tt>draw_text</tt></a></b>. This takes three arguments.  It takes an <tt><b>x</b></tt> position in the room, a <tt><b>y</b></tt> position in the room and a <tt><b>string</b></tt> (a group of letters, numbers and symbols). Lets now call this function.  For the x and y argument we will not pass it numbers.  Please note that if you look at the help menu that this function does not return any value (the manual says it returns <tt><b>NA</b></tt>).
+		
+	<p>
+		We will use the <tt><b>x</b></tt> and <tt><b>y</b></tt>  position of the object in the room.  There are two built in variables in each game object (we will get into more detail on variables later) and this is its x,y position in room space.  So type in <h3>obj_hello_world_text: Draw</h3>
+	
+	<p>
+	<img class="center" src="ch1-page1-images/DrawHelloWorldHardCoded.png" alt="Add a draw_text to print hello world">
+	
+	<p>
+		The above should draw the text "Hello World" (without quotation marks) in the room.  But first we need to drag this game object in the room so it knows to run this game object in this level we previously named. So we double <img style="vertical-align:middle" src="images/Icon_LMB.png"> left click on the rm_hello_world to go back (or reopen) the room.  Adjust the zoom so you can see the entire room as we want to drag the game object in the center.  Make sure the <tt><b>Layers</b></tt> tab in open in the <b>Room Editor</b> and that you highlight <tt><b>Instances</b></tt> layer.  You can only add game objects onto an instance layer (you can have more than one layer of course).  Then drag and drop a single instance of <tt><b>obj_hello_world_text</b></tt> into the main game window in as close to the center as you can make it:
+
+	<p>
+		<img class="center" src="ch1-page1-images/PlaceHelloWorldObjectInRoom.png" alt="Drag and drop obj_hello_world_text game object onto Instances layer in room">
+
+	<p> 
+		I eyeballed the center of the room.  What if I want it to be in the exact center of the room.  How do I go about doing this?  I can double <img style="vertical-align:middle" src="images/Icon_LMB.png"> left click on the icon in the middle of the room which will bring up an <tt><b>Instance</b></tt> window of this game object.  I can look at the <tt><b>Properties | Room Settings | Width & Height</b></tt> to see the pixel dimensions of the room.  In my case it defaults to 1024 by 768.  The center would be these two values divided by 2.  So if your instance window does not show <tt><b>x</b></tt> as <tt><b>512</b></tt> and <tt><b>y</b></tt> as <tt><b>384</b></tt>, make the change to them in the editor window now so that the object is dead center.
+	<p>
+		<img class="center" src="ch1-page1-images/CenterOfRoom.png" alt="Calculate exact center of room">
+
+	<p>
+		Now we are ready to run the game for the first time.  I know this is not impressive but this is the least we need to have something in a game.  We need a room and a game object with some logic.  Press the <img style="vertical-align:middle" src="images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  It should look like this:
+
+	<p>
+		<img class="center" src="ch1-page1-images/HelloWorldGame.png" alt="Game Running Hello World">
+
+	<p>
+		Notice that the text is left justified.  It starts writing from the center going towards the right hand side:
+
+	<p>
+		<img class="center" src="ch1-page1-images/HelloWorldGameOffCenter.png" alt="Showing center of room in running hello world">
+
+	<p>
+		What if we wanted to center the text on the screen?  We can call another function to adjust how the text is aligned horizontally.  It is conveniently called <b><a href="gms2tutorials:///ShowHelp?keyword=draw_set_halign"><tt><b>draw_set_halign(halign)</b></tt></a></b>. This function again does not return anything, it just sets the horizontal alignment.  What is the argument <tt>halign</tt>?  This is not a number and is not a string.  It is an enumerator (will get into detail in another tutorial) that lists the types of alignment in english.  The enumerator we want is called <tt><b>fa_center</b></tt>.  Go back to the script window in <h3>obj_hello_world_text: Draw</h3> and on the very top (above the <tt><b>draw_text(string)</b></tt>function just start to type <tt>draw_set_halign</tt>.
+
+	<p>
+		<img class="center" src="ch1-page1-images/AutoCompleteDrawSetHalign.png" alt="Type draw_set_halign in draw event auto-complete">
+
+	<p>
+			You will notice that the engine starts to give you possible suggestions in the auto-complete.  If you type enough it will narrow it down to its one built in function.  You don't need to continue typing.  If it is highlighted you can just press the <imgcstyle="vertical-align:middle" src="images/Icon_Enter.png"> <tt><b>Enter Key</b></tt> or <img style="vertical-align:middle" src="images/Icon_Tab.png"> <tt><b>Tab</b></tt> to fill in the rest for you. The advantage is not only speed but it prevents spelling errors which causes the game to not compile or run.
+
+	<p>
+			Now in the parenthesis start to type <tt><b>fa_center</b></tt> and then auto-complete.
+
+	<p>
+		<img class="center" src="ch1-page1-images/FaCenterTextHAlign.png" alt="selecting fa_center enum to pass to draw_set_halign">
+
+<p>
+			Add a comment to explain what this does on top of the function (your comment does not have to be the same as mine, as long as it makes sense to you and/or your team).  It should look like:
+
+	<p>
+		<img class="center" src="ch1-page1-images/CenterHalign.png" alt="Add another comment to what you just typed">
+
+<p>
+			Now at the end lets return to the default.  Otherwise it is possible that this will affect the horizontal alignment of other objects.  So set the horizontal alignment back to <tt><b>fa_left</b></tt>.
+
+	<p>
+		<img class="center" src="ch1-page1-images/ReturnToFALeft.png" alt="reset alignment at end to left">
+
+		<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  Now the text should be horizontally centered. It should look like this:
+	
+		<p>
+		<img class="center" src="ch1-page1-images/HelloWorldInGameCenter.png" alt="Game runs hellow world with proper centering">
+
+	<p>
+		Next up we will look at <b>Variables</b>.
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left"> <!-- Button commented out as we are on the index and can't go back -->
+				<!-- <a href="Chapter_1/page09.html"  class="prev">
+				<div id="button-prev"></div> -->
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="ch1/page02.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

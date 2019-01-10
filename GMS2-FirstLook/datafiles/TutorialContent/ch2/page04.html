@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch2 - Page 4</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="page04.html">Positioning on Screen Part II</option>
+					<option value="page05.html">Positioning on Screen Part III</option>
+					<option value="page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="../ch3/page01.html">Moving NPC</option>
+					<option value="../ch3/page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<optgroup label="Chapter 1 - Manipulating Text">
+						<option value="../page01.html"><b>Hello World</b></option>
+						<option value="../ch1/page02.html">Variables</option>
+						<option value="../ch1/page03.html">Data Types</option>
+						<optgroup label="Logic, Positioning & Errors">
+					<option value="page01.html">If Statements</option>
+					<option value="page02.html">Loops</option>
+					<option value="page03.html">Positioning on Screen Part I</option>
+					</optgroup>
+					</optgroup>
+	
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+
+<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+
+<p style="color:rgb(85, 109, 130)">
+	<b>Positioning on Screen Part II</b>
+
+<p>
+	We can't place a sprite in the room we have to bind it to an game object.  <img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click on <b>Object</b> and select <b>Create Object</b>.  Call this object <tt>obj_triangle</tt>.  Press the button that says <tt>No Sprite</tt> and pick the <tt>spr_triangle</tt> sprite from the drop down menu.
+
+<p>
+	<img class="center" src="images/CreateTriangleObject.gif" alt="Create obj_triangle game object">	
+
+<p>
+	Now lets create an object for the square.  <img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click on <b>Object</b> and select <b>Create Object</b>.  Call this object <tt>obj_square</tt>.  Press the button that says <tt>No Sprite</tt> and pick the <tt>spr_square</tt> sprite from the drop down menu.
+
+<p>
+	<img class="center" src="images/CreateObjSquare.gif" alt="Create obj_square game object">	
+
+<p>
+	Now lets create an object for the circle.  <img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click on <b>Object</b> and select <b>Create Object</b>.  Call this object <tt>obj_circle</tt>.  Press the button that says <tt>No Sprite</tt> and pick the <tt>spr_circle</tt> sprite from the drop down menu.
+
+<p>
+	<img class="center" src="images/CreateObjectCircle.gif" alt="Create obj_circle game object">	
+
+	<div class="note">
+	<p>
+		Note: Please note a consistency here.  We are naming all objects with prefix <tt><b>obj_</b></tt> and all sprites <tt><b>spr_</b></tt>.  This is because we can't have two files with the same name.  We might have various different types of assets with the name circle (for example). This allows us to share a name but not have a problem with collision on two game items with the exact same name.  It also makes it easier to figure out which sprite goes with which objects.  In a small object like this it is simple, but if we had 200 sprites and objects this would be harder to tell without following a consistent naming convetion.
+	</div>
+
+<p>
+	<img style="vertical-align:middle" src="../images/Icon_LMB.png"> Double left click <tt><b>rm_data_types</b></tt> and drag the triangle, circle and square into the room around where you think line 25 lies by eye.
+
+<p>
+	<img class="center" src="images/DragThreeShapesInRoom.png" alt="Drag three newly created game objects into room and guess location under previous text">	
+
+<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <b>Play Button</b>. We should see the three shapes but it are not exactly in the center of the line like in our target drawing.
+
+<p>
+	<img class="center" src="images/ThreeShapesInGameInitial.png" alt="Run the game and three objects not quite positioned properly">	
+
+<p>
+		Now we want the objects to be over the line 25 we have drawin the <tt>obj_data_types_controller</tt> and look to see how many pixels each <tt>line_height</tt> was.  In my case it is <tt>22</tt>.
+
+<p>
+	<img class="center" src="images/WhatLineHeightIsAgain.png" alt="Check value of line_height variable">	
+
+<p>
+	<img style="vertical-align:middle" src="../images/Icon_LMB.png"> Double left click <tt><b>obj_triangle</b></tt> and we need to add a variable to this object.  Press the <tt><b>Variable Definition</b></tt> button on the game object. 
+
+<p>
+	<img class="center" src="images/AddVariableToObjTriangle.png" alt="Press variable definition button on obj_triangle">	
+
+<p>
+		Press the <tt><b>Add</b></tt> button and call the variable <tt><b>line_height</b></tt> and set the <tt><b>Default</b></tt> value to <tt><b>22</b></tt>.  Make sure the <tt><b>Type</b></tt> is a <tt><b>Real</b></tt> number.
+
+<p>
+	<img class="center" src="images/AddLineHeightToObjTriangle.png" alt="add line_height variable set to 22 to obj_triangle">	
+
+<p> 
+GameMaker uses an <b><a href="gms2tutorials:///ShowHelp?tag=events">event system</a></b> to run its scripts. We have already used the <tt><b>Draw</b></tt> event to draw the text and lines in this room.  The draw event runs every frame.
+
+<p>
+	We will take a look at two more event types:
+
+<p>
+	<b>Create Event & Step Events</b>
+
+<p>
+	The <b><a href="gms2tutorials:///ShowHelp?tag=events">Create Event</a></b> runs only one time when the object is instantiated (when it appears in the room). This could be at the game start if the object is placed in the Room; or it could be run once when it is instantiated through code. This is the perfect time to set up the inital value for a variable. Please note that this will be shared amongst all instances, if you want a separate value for a specific instance use the editor in the room to adjust the variable value.  The room settings run after the Create Event and will override what is placed there.
+
+<p>
+	The <b><a href="gms2tutorials:///ShowHelp?tag=events">Step Event</a></b> is the main game loop. It runs every frame when the game is running. The code attached to this event runs every tick. Typically we instantiate variables in the Create event and run ai and gameplay in the step event. The step event (like the draw event) runs every frame so be careful to use it for something that needs to be updated 30+ times a second. 
+
+<p>
+	<img class="center" src="images/CreateStepEvents.png" alt="Create and step events illustration">	
+
+<p>
+	For positioning the objects in the room we will use the create event.  We only need to do this once and there is only a single instance of each object (don't need to do it in the room).  
+	
+<p>
+	Double click on <tt><b>obj_triangle</b></tt> and press the <b><tt>Events</tt></b> button then press the <b><tt>Add Event</tt></b> button.  In the menu select <b><tt>Create</tt></b> event. Scroll over to the scipting window that flew out. 
+
+<p>
+	<img class="center" src="images/TriangleCreateEvent.gif" alt="add Create Event to obj_triangle">	
+<p>
+	Now we want the <tt><b>obj_triangle</b></tt> to be on the twenty fifth line (25 * line_height or 25 * 22).  On the x-axis we want it on the left hand side of the screen.  Remember 0,0 is the top left corner so we want to be <tt><b>0</b></tt> on the x-axis:
+
+
+<p>
+	<img class="center" src="images/WhereToTargetTriangle.png" alt="illustration of where to target triangle position in room">	
+
+<p>
+	In scripting we are adjusting two variables that come with every object.  All objects have a built in <tt><b>x</b></tt> and <tt><b>y</b></tt> variable that represent their 2-d position in the room.
+<p>
+	<img class="center" src="images/PositionTriangleInCreateTake1.png" alt="First attempt at positioning triangle in code">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now we should see the triangle in the correct position on the x-axis but it is below the line as opposed to being centered on it.
+<p>
+	<img class="center" src="images/TrianglePosition1InGame.png" alt="Run game and triangle is below the line and not center on it">	
+
+<p>
+	The game bases everything on the object's origin.  This is a single point relative to the object (it can be anywhere relative to the object, even outside of the sprite itself).  The default position if you do not make any changes is the top left corner of the sprite.  The world position of the sprite is it's location in the room (0, 25 * line_height) but it's local origin position is (0, 0).
+
+<p>
+	<img class="center" src="images/OriginTopLeftSprite.png" alt="Illustration of sprite origin">	
+
+<p>
+	The good news is that we can change the origin. Open <tt><b>spr_triangle</b></tt> and click on the drop down menu that says <tt><b>Top Left</b></tt>.  Select <tt><b>Middle Center</b></tt> instead.  Look at the target reticule update automatically:
+
+<p>
+	<img class="center" src="images/CenterOriginOnTriangle.gif" alt="set obj_triangle sprite origin to middle center">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now the vertical positioning is better but half the ship is off the screen to the left.  It placed the origin of the sprite at <tt>0</tt> on the x-axis.
+
+<p>
+	<img class="center" src="images/ShipTriangleOffscreen.png" alt="Run game and triangle correctly centered based on new origin but off by half a sprite width and height">	
+
+<p>
+	Now we need to compensate for where the sprite's origin is located.  It is located at (32, 32)  which is half the sprite_width.  So we can adjust <tt><b>x</b></tt> to be <tt><b>32</b></tt>.
+
+<p>
+	<img class="center" src="images/MoveXByHalfSprite.png" alt="Adjust for half a sprite width and height">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now the triangle should be properly placed both horizontally and vertically.
+
+<p>
+	<img class="center" src="images/TriangleProperlyPlaced.png" alt="Run game and triangle is now properly centered">	
+
+<p>
+	What if down the road I wanted to make a change and have the sprite be 32 x 32 pixels.  Then I would have to change this value.  There is a way to not hard code this value and have it change with the <b><a href="gms2tutorials:///ShowHelp?tag=sprite_width"><tt>sprite_width</tt></a></b>.
+
+<p>
+	<img class="center" src="images/UseVariableForXPosition.png" alt="Turn this offset into a variable">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <b>Play Button</b>. It should look identical as we just converted that real number into a variable.
+
+<p>
+	<img class="center" src="images/TriangleProperlyPlaced.png" alt="Run game with variable offset and result should be the same">	
+
+<p>
+	Lets do the same thing with <tt><b>obj_square</b></tt>.  Let's start by cliciking on the <tt><b>Variable Definitions</b></tt> button and press <tt><b>Add</b></tt> and name the variable <tt><b>line_height</b></tt> and set the Default value to <tt><b>22</b></tt.>
+
+<p>
+	<img class="center" src="images/AddSpriteHeightToSquare.gif" alt="Add line_height set to 22 to obj_square game object">	
+
+<p>
+	Press the <tt><b>Add Event</b></tt> button and select a <tt><b>Create</b></tt> event.
+
+<p>
+	<img class="center" src="images/AddCreateEventToSquare.png" alt="Add Create event to obj_square">	
+	
+<p>
+	In this case we want the middle of the room and we can divide the <tt><b>room_width</b></tt> variable by <tt><b>2</b></tt> (or multiply by <tt><b>0.5</b></tt>). The <tt><b>y</b></tt> value will be the same as <tt><b>obj_square</b></tt>.
+
+<p>
+	<img class="center" src="images/CreateScriptSquareInitial.png" alt="Center square on x axis in script">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. We notice that it has the same problem that it is positioned based on it's top left corner.
+
+<p>
+	<img class="center" src="images/SquareWrongPositionInitial.png" alt="Run game and square is not positioned correctly">	
+	
+<p>
+	Now there are other reason's besides positioning the sprite to adjust the origin.  Another consideration is when we want to rotate the sprite.  On the next page we will see how origin affects rotation.
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page03.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="page05.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

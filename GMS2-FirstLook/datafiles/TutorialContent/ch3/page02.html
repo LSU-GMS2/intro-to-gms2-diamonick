@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch3 - Page 1</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+
+				<optgroup label="Movement">
+					<option value="page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<optgroup label="Chapter 1 - Manipulating Text">
+						<option value="../page01.html"><b>Hello World</b></option>
+						<option value="../ch1/page02.html">Variables</option>
+						<option value="../ch1/page03.html">Data Types</option>
+					</optgroup>
+					<optgroup label="Logic, Positioning & Errors">
+					<option value="../ch2/page01.html">If Statements</option>
+					<option value="../ch2/page02.html">Loops</option>
+					<option value="../ch2/page03.html">Positioning on Screen Part I</option>
+					<option value="../ch2/page04.html">Positioning on Screen Part II</option>
+					<option value="../ch2/page05.html">Positioning on Screen Part III</option>
+					<option value="../ch2/page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="page01.html">Moving NPC</option>
+				</optgroup>
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+	
+	<p style="color:rgb(85, 109, 130)">
+	<b>Moving Player</b>
+
+	<p>
+		We have looked at <b>Variables</b>, <b>Functions</b> and <b>Data Types</b> Now we are going to look at <b><a href="gms2tutorials:///ShowHelp?tag=language_features">conditional if statements</a></b>. This is used all of the time.  One of the next times we will see it will be for determining user input.  Has the user pressed a button on the keyboard?  We use <tt><b>if</b></tt> statements to check this. We will be controlling the circle with the arrow keys.
+
+	<p>
+		Lets start by right clicking <tt><b>obj_circle</b></tt> and select <tt><b>Duplicate</b></tt>.
+
+	<p>
+		<img class="center" src="images/DuplicateCircle.png" alt="Duplicate obj_circle">
+
+	<p>
+		Call it <tt><b>obj_circle_movement</b></tt>.
+
+	<p>
+		<img class="center" src="images/ObjCircleMovement.png" alt="name obj_circle duplicate obj_circle_movement">
+
+	<p>
+		Open the <tt><b>Create</b></tt> event and center the object in the dead center of the room:
+
+	<p>
+		<img class="center" src="images/RepositionCreateCircleMovement.png" alt="Center in room in create event of obj_circle_movement">
+		
+	<p>
+		Drag and drop <tt><b>obj_circle_movement</b></tt> to the center of <tt><b>rm_movement</b></tt>.
+
+	<p>
+		<img class="center" src="images/DragCircleToRoom.png" alt="Drag and drop obj_circle_movement to room">
+	
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now the circle starts in the center of the room:
+	
+	<p>
+		<img class="center" src="images/CircleCenterRoom.png" alt="Run the game circle is in middle of room">
+
+	<p>
+		Press the <tt><b>Add Event</b></tt> button on <tt><b>obj_circle_controller</b></tt> and add a <tt><b>Step | Step</b></tt> event.  Now we will look at <b><a href="gms2tutorials:///ShowHelp?tag=keyboard_check">keyboard_check(key)</a></b> and will subtract the left key from the right key.  Now if you remember <tt><b>keyboard_check(key)</b></tt> returns a boolean which will be 1 if true and 0 if false.  This means if right is pressed it will be 1-0. If left is pressed it will be 0-1.  If both right and left are pressed it will be 1-1.  So this gives us a range of -1 to 1.
+
+	<p>
+		Lets prove it.  We will do that with another new function <b><a href="gms2tutorials:///ShowHelp?tag=show_debug_message">show_debug_message(string)</a></b>.  It will print this message in the <tt>Debugger Output</tt> window. 
+		
+	<p>
+		<img class="center" src="images/CircleMovementStepEvent.png" alt="Add show_debug_message to step event">
+
+	<p>
+		You should have an <tt><b>Output</b></tt> tab in the bottom.  If you don't see it you can select <tt><b>Window | Output</b></tt> and it will appear in the bottom section (you might have to expand it to see it better).
+		
+	<p>
+		<img class="center" src="images/OutputWindow.png" alt="Make sure you have an output window at bottom of ide">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Look at the Output Tab and press the left and right arrow on the keyboard.  The message should print and show either a -1, 0 or 1 as we figured.
+	
+	<p>
+		<img class="center" src="images/OutputPrintHorizontal.gif" alt="Run game and look at output in window">
+
+	<p>
+		Repeat the for moving up and down by looking for the object moving up or down.  Remember positive <tt><b>y</b></tt> is moving down so we subtract the up arrow from the down arrow.  Lets print to output this result as well:
+		
+	<p>
+		<img class="center" src="images/VerticalDebugAdded.png" alt="Repeat for moving up and down with debug">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Look at the Output Tab and press the left, right, up and down arrow on the keyboard.  The message should print and show either a -1, 0 or 1 for both horizontal or vertical movement.
+	
+	<p>
+		<img class="center" src="images/HorizontalVerticalMessage.gif" alt="Run game and debug works for up and down">
+
+	<p>
+		Now what is nice about having a range of -1 to 1 is that we can scale it by multiplying it.  If we want to move at a speed of 5 we can multiply this value by 5 and it will range from -5 to 5.  What we will do is set the movement component for each axis.  This is through two variables that comes with every object. <b><a href="gms2tutorials:///ShowHelp?tag=vspeed">vspeed</a></b> and <b><a href="gms2tutorials:///ShowHelp?tag=hspeed">hspeed</a></b>
+
+		<blockquote>
+			hspeed is one of the "built in" properties that all instances have and defines the horizontal movement speed (along the x-axis) of the instance in pixels per step. So, an hspeed of 3 means 3 pixels of movement to the right (+x) every step, and an hspeed of -3 would mean 3 pixels of movement to the left (-x) every step. - GameMake Manual
+		</blockquote>
+
+	<blockquote>
+		vspeed is one of the "built in" properties that all instances have and defines the vertical movement speed (along the y-axis) of the instance in pixels per step. So, a vspeed of 3 means 3 pixels of movement to the bottom (+y) every step, and a vspeed of -3 would mean 3 pixels of movement to the top (-y) every step.
+		</blockquote>
+
+	<p>
+		Delete the two <tt><b>show_debug_message(string)</b></tt> functions and add to both the hspeed and vspeed of the object like so:
+		
+	<p>
+		<img class="center" src="images/AddHspeedAndVspeed.png" alt="Delete debug and add hspeed and vspeed to obj_circle_movement step event">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Press the left, right, up and down arrow on the keyboard.  Now the circle moves around the screen.  But woops it can go off screen and disapear.
+	
+	<p>
+		<img class="center" src="images/MoveCircleOffScreen.gif" alt="Player now moves in game but gets lost off screen">
+
+	<p>
+		Since the entire level is in this one window we can wrap the player when it goes off screen.  GameMaker has built in functions for a lot of very common game issues and this is one of them.  <b><a href="gms2tutorials:///ShowHelp?tag=move_wrap">move_wrap(hor, vert, margin)</a></b>
+
+	<p>
+		The <tt><b>hor</b></tt> and <tt><b>vert</b></tt> are booleans so you can set it to wrap just vertically or horizontally.  The <tt><b>margin</b></tt> adjusts so that the sprite has to be offscreen by so many pixels.  In our case it is only completely off screen when half the <tt><b>sprite_width</b></tt> is off screen.  
+
+	<p>
+		Add the following to <tt><b>obj_circle_movement: Step</b></tt> event script:
+		
+	<p>
+		<img class="center" src="images/MoveWrapCircle.png" alt="Add move_wrap to obj_circle_movement">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Press the left, right, up and down arrow on the keyboard.  Now go off screen both horizontally and vertically and it reappears on the other side.  Works like a charm!
+	
+	<p>
+		<img class="center" src="images/MoveWrapInGame.gif" alt="Player moves and screen wraps">
+
+	<p>
+		Now lets have the player character look at the direction it is moving in.  Now we want the player's <tt><b>image_angle</b></tt> to face the direction the player is moving in.  There is a variable called <b><a href="gms2tutorials:///ShowHelp?tag=direction">direction</a></b> that has the angle of the <tt><b>speed</b></tt> of the player (the addition of the <tt><b>hspeed</b></tt> and <tt><b>vspeed</b></tt>).
+		
+	<blockquote>
+		All instances in GameMaker Studio 2 have certain "built in" properties that you can use and set to govern how they look and behave. Direction is one of those properties and can be used to set the direction of movement of the instance when the instance has a speed other than 0. Note that directions in GameMaker Studio 2 are usually calculated as 0° being right, 90° being up, 180° being left and 270° being down. - GameMaker Manual
+	</blockquote>
+
+	<p>
+		Add the following to <tt><b>obj_circle_movement: Step</b></tt> event script at the bottom:
+
+	<p>
+		<img class="center" src="images/ImageAngleForPlayerCircle.png" alt="Player looks at direction variable">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. This is as much as we will do for now.  We have introduced a lot of basic functionality in GameMaker.  Now go make a great game!
+	
+	<p>
+		<img class="center" src="images/MoveWrapInGame.gif" alt="Player rotates when moving">
+
+</div>
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page01.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<!--<a href="page02.html" class="next">
+					<div id="button-next"></div>-->
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

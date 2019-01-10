@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch2 - Page 4</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="../ch3/page01.html">Moving NPC</option>
+					<option value="../ch3/page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<optgroup label="Chapter 1 - Manipulating Text">
+						<option value="../page01.html"><b>Hello World</b></option>
+						<option value="../ch1/page02.html">Variables</option>
+						<option value="../ch1/page03.html">Data Types</option>
+						<optgroup label="Logic, Positioning & Errors">
+					<option value="page01.html">If Statements</option>
+					<option value="page02.html">Loops</option>
+					<option value="page03.html">Positioning on Screen Part I</option>
+					<option value="page04.html">Positioning on Screen Part II</option>
+					<option value="page05.html">Positioning on Screen Part III</option>
+					</optgroup>
+					</optgroup>
+	
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+
+<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+
+<p style="color:rgb(85, 109, 130)">
+	<b>Errors</b>
+
+<p>
+	There are three kind of errors:
+
+	<ol type="1">
+	<li>Compile errors.  This is where the game does not compile so it cannot be run.  Often this is just a simple spelling mistake.</li>
+
+<li>Runtime errors.  These are errors that appear when playing the game.  These can be a bit trickier to track down.</li>
+
+	<li>Logical errors.  These never break, crash or cause any warnings in the game.  They are just plain mistakes or wrong.  Often we refer to these as <b>bugs</b>.</li>
+</ol>
+
+<p>
+	Lets create a new room by <img style="vertical-align:middle" src="../images/Icon_RMB.png"> right-clicking on <tt><b>Room</b></tt> in the <tt><b>Resources</b></tt> tab and selecting <tt><b>Create Room</b></tt>.  Call it <tt><b>rm_errors</b></tt>. 
+
+<p>
+	<img class="center" src="images/AddRoomErrors.gif" alt="Create new room called rm_errors">	
+
+<p>
+	<img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click on <tt><b>Object</b></tt> title in the <tt><b>Resources</b></tt> folder.  Create a new game object called <tt><b>obj_errors_controller</b></tt>.
+
+<p>
+	<img class="center" src="images/ObjErrorsController.png" alt="Create new object called obj_errors_controller">	
+
+<p>
+	Now we want to actually use this room so we need to drag <tt><b>rm_errors</b></tt> to the top of the room list in the <tt><b>Resources</b></tt> menu.
+
+<p>
+	<img class="center" src="images/MoveRoomToTopOfList.gif" alt="Move room to top of list">	
+
+<p>
+	Lets start with heads up display (HUD) for this room.  Press the <img style="vertical-align:middle" src="../images/Icon_LMB.png"> <tt><b>Add Event</b></tt> button and select a <tt><b>Draw | Draw</b></tt> event:
+
+<p>
+	<img class="center" src="images/AddDrawEventToObjErrorsContr.png" alt="Add draw event to obj_errors_controller">	
+
+<p>
+	Type the following script in the newly created draw script.  Please <b>mispell</b> <tt>draw_text</tt> to show what happens if you mispell a function name.
+
+<p>
+	<img class="center" src="images/DrawRoomTitleMispelledFunction.png" alt="mispell draw_text function">	
+
+<p>
+	Now we need the room to run the script.  <img style="vertical-align:middle" src="../images/Icon_LMB.png"> Double left click on <tt><b>rm_errors</b></tt> to open the room and drag and drop the <tt><b>obj_errors_controller</b></tt> object into the room.
+
+<p>
+	<img class="center" src="images/DragErrorsControllerInRoom.png" alt="Draw obj_errors_controller to outside of room">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. This time the game never runs.  At the very bottom there should be a tab whose title is <tt><b>Compile Errors</b></tt>.  Inside it reads the message <tt>Object:obj_errors_controller Event:Draw at line 7: unknown function or script draw_tetx</tt>.  Sometimes the errors can be a bit obtuse other times there are very precise.  Now we know which object, which event type and what line our error is in.
+
+<p>
+	<img class="center" src="images/CompileErrorWrongFunction.png" alt="Run game but compile errors inhibits game from starting">	
+
+<p>
+	OK, lets fix the spelling mistake.  Please notice the color change in the editor. If you are using a gamemaker function or variable it will be an orange color and this is one tip that something is wrong. This only works for GML supplied names, as the ones we create ourselves will never be orange.
+
+<p>
+	<img class="center" src="images/DrawTextSpellingFix.png" alt="Look at color of built in variable names and functions">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now it loads the game up again.  This was the first type of error we will get in gamemaker a compile error. It means the compiler stops us from running the game as it has a problem trying to build the game executable.
+
+<p>
+	<img class="center" src="images/RoomOfErrorsSmallTitleInGame.png" alt="Game loads properly once spelling is fixed and title is displayed">	
+
+<p>
+	Now lets look at some more errors.  Lets make the font a bit larger.  Right click on the <tt><b>Font</b></tt> title in the <tt><b>Resources</b></tt> menu.  Select <tt><b>Create Font</b></tt> from the menu and name the new font <tt><b>fnt_title</b></tt.> Change the <tt><b>Style</b></tt> to <tt><b>Bold</b></tt> and the <tt><b>Size</b></tt> to <tt><b>24</b></tt>.  This will be twice the size as the previous version.
+
+<p>
+	<img class="center" src="images/CreateTitleFont.png" alt="Create a title font">	
+
+<p>
+	Now reopen the <tt>obj_errors_controller:Draw</tt> event script and change the font before the draw text with a new function called <b><a href="gms2tutorials:///ShowHelp?tag=draw_set_font">draw_set_font(font)</a></b>.
+
+<p>
+	<img class="center" src="images/InsertFontTitleIntoScript.png" alt="Change font type for title in obj_errors_controller draw event">	
+
+<p>
+	Now mispell the font name in the parenthesis.  Look at what happens to the color of it?  Not only does GameMaker color its own variables and functions it also colors red resource names that it recognizes that you added to the resource list.  In this case if we don't spell it, it will look for a variable holding a font. OK, change the spelling back to <tt><b>fnt_title</b></tt> and fix the spelling error.  
+
+<p>
+	<img class="center" src="images/MispellFontTitle.png" alt="Change font name to be wrong">	
+
+<p>
+	Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. The title is now a lot larger.  Now lets change the color of the font.
+
+<p>
+	<img class="center" src="images/TitleInRoomLarge.png" alt="Font for title is larger as you run game">	
+
+<p>
+	Now lets add the function <b><a href="gms2tutorials:///ShowHelp?keyword=draw_set_color">draw_set_color(color)</a></b>. This affects all colors after the line that you will be drawing (font or not).  Now make sure you mistype this on purpose with two <tt>((</tt> opening parenthesis and a mispelled color name (should be <tt>c_green</tt> and not just <tt>green</tt>).
+
+<p>
+	<img class="center" src="images/DrawSetColorWrong.png" alt="Set color to green but mispell it">	
+
+<p>
+	For an error that trips up the parser (it reads text and looks for issues like more opening parenthesis than closing ones) it will have a red highlight.  Now the issue with compiler issues is that the problem is not always on the line indicated.  In this case the first red box is correct but the second red box has no errors.  Often the error is not where the IDE thinks it is and you have to be careful.
+
+<p>
+	<img class="center" src="images/ParseErrorRed.png" alt="Red error boxes don't always point to correct spot">	
+
+<p>
+		Before fixing any errors run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Take a look at the error.  Again, it gives you a hint to the first problem.  Notice that it says nothing about our second error at this point.  This is still a compile time error.
+
+<p>
+	<img class="center" src="images/RunCompileError.png" alt="Another compile time error with extra parenthesis">
+
+<p>
+		Fix the first error in the script by deleting the extra opening parenthesis.  Then run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. This time it does run so it did compile and build the game.  But uh oh, it creates a run time error:
+
+<p>
+	<img class="center" src="images/ColorRunTimeError.gif" alt="Run time error is exposed when running game">
+
+<p>
+		Run time errors are a little bit harder to fix and understand the error message.  The reason it compiled and run is it thought you had created a variable called green that you were calling.  In fact if you added the line <h3><tt>green = c_green</tt></h3>
+	
+	<p>
+		It would have ran fine (although you needlessly created another variable for the color green). The hint in the error message it says <tt><b>green... not set before reading it</b></tt>.  This is a very common error that occurs when we forget to give a variable a default initial value or mispell the name.  Fix the error and run the game with the green font shown.
+
+	<p>
+		<img class="center" src="images/ErrorTitleGreen.png" alt="Title now is green">
+
+
+
+		<p>
+		The next step is to import a scipt into the script folder.  This script will be full of errors that you can fix.  You will find it in the <tt><b>Included Files | TutorialResources</b></tt> folder.  It is in a folder called scr_resources.  If you have any problems finding this file you can also find it <a href="gms2tutorials:///ShowFiles?path=../TutorialResources/scr_errors">here</a>. Look at the finder or explorer and find out the location of this folder on your computer.
+
+<p>
+	Now <img style="vertical-align:middle" src="../images/Icon_RMB.png"> right-click on the <tt><b>Scripts</b></tt> header in the <tt><b>Resources</b></tt> folder.  select <tt><b>Add Existing</b></tt> and go to the above folder.  Select the file called <tt><b>scr_errors.yy</b></tt>.  Then double click on this file and you should see a script file with errors in it.
+
+<p>
+	<img class="center" src="images/AddErrorScriptFullOfErrors.gif" alt="add scr_errors script to project">
+
+<p>
+	There are a few functions introduced.  Lets look at the first function: <b><a href="gms2tutorials:///ShowHelp?tag=instance_create_layer">instance_create_layer(x, y, layer_id, obj)</a></b>. This function spawns a game object dynamically in code rather than placing one in the room.  This would be used for objects like bullets that the game spawns when the player presses the fire button.  This is a way to add an object to a room without placing it there to run when the game starts.  
+	
+<p>
+	But what does it return?  The function returns a <h3>Real (instance ID Value)</h3>
+	
+<p>
+	Every object in a room will get a real number so we can access it later on.  If we look at our last room we can see that each object in the room will have an instance number:
+
+<p>
+	<img class="center" src="images/RealNumberAssignedToInstancesInRoom.png" alt="Instance number of objedt in room">
+
+<p> So in this case we want to spawn a new object then position somewhere different than where it's <tt><b>Craate</b></tt> event sets.  Lets say we want to use this script to spawn an <tt><b>obj_circle</b></tt> object.  But how do we access the x & y variable from within another object.  This script is being called somewhere else but we can still access them by going through the reference.  We want to dot instance access another instances variables. 
+
+<p>
+	What does this mean?  We can take:
+	<tt>foo = isntance_create_layer(0, 0, "Instances", obj_circle);</tt>
+	
+<p>
+	Now the foo variable holds the reference to the newly created circle.  So we can access foo's variables by putting <tt><b>foo.</b></tt> in front of the variable name.  So if we want to position it's x value we would input <tt><b>foo.x = room_width * .5;</b></tt>.
+
+<p>
+	We can see this in the newly imported script:
+
+<p>
+	<img class="center" src="images/DotInstanceAccess.png" alt="Look at newly imported script to see dot access">
+	
+<p>
+	The other item I want to highlight is the <tt><b>instance_create_layer(x, y, layer_id, obj)</b></tt> layer_id argument we need to pass to the function.  It is the third variable we send when calling this function:
+
+<p>
+	<img class="center" src="images/LayerInRoom.png" alt="If statement running in game checking for the space button being pressed">
+
+<p>
+	What this refers to is the layer in the room that it will be added to.  Just like Photoshop, you can add layers to this yourself.  But the default layer for game objects in the rooms is always called "Instances".  Secondly why don't we pass it Instances without quotation marks.  This is because it is a variable that is NOT an enumerator.  The user can create their own names, so the engine doesn't know all possible names to assign as enumerators.  We need to pass the name of the layer as a string which is done with quotation marks:
+
+<p>
+	<img class="center" src="images/InstancesInRoom.png" alt="Instances name should be in parenthesis">
+
+<p>
+	We need to call this script so it runs.  Double click <tt><b>obj_errors_controller</b></tt> and add call this new function:
+
+<p>
+	<img class="center" src="images/CallScrErrorsScxipt.png" alt="Add new function to draw event">
+
+
+<p>
+	Now you can try and run the game but this script is full of errors.  Fix all the errors on your own and you should end with the following end result:
+
+<p>
+	<img class="center" src="images/RoomErrorFree.gif" alt="GIF of game with all errors fixed">
+
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page05.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="../ch3/page01.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

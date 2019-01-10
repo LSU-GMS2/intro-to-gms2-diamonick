@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch2 - Page 2</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="../ch2/page02.html">Loops</option>
+					<option value="../ch2/page03.html">Positioning on Screen Part I</option>
+					<option value="../ch2/page04.html">Positioning on Screen Part II</option>
+					<option value="../ch2/page05.html">Positioning on Screen Part III</option>
+					<option value="../ch2/page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="../ch3/page01.html">Moving NPC</option>
+					<option value="../ch3/page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<optgroup label="Chapter 1 - Manipulating Text">
+						<option value="../page01.html"><b>Hello World</b></option>
+						<option value="../ch1/page02.html">Variables</option>
+						<option value="../ch1/page03.html">Data Types</option>
+						<optgroup label="Logic, Positioning & Errors">
+					<option value="page01.html">If Statements</option>
+					</optgroup>
+					</optgroup>
+	
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+	
+	<p style="color:rgb(85, 109, 130)">
+	<b>Loops</b>
+
+	<p>
+		We will look at one more programming concept and it is <tt><b>loops</b></tt>. A loop repeats itself a given number of times within one frame to perform an operation.  In a game we might be looping through all enemies to see which is closest to the player to auto aim a reticule.  We will look at two loops supported in GameMaker.  The first is <b><a href="gms2tutorials:///ShowHelp?keyword=repeat">repeat</a></b>.
+
+	<p>
+		So lets look at programming a loop to see what it does. Lets create a list of what we want to do in this next portion of our script:
+
+		<ul>
+		<li>Skip a line</li>
+		<li>Add a title</li>
+		<li>Add a variable called <tt>loop_num</tt></li>
+		<li>Print value of loop_num under title</li>
+		<li>Add a <tt>repeat(5)</tt> loop which runs what is inside the brackets five times</li>
+		<li>Add 1 each time the loop runs to the <tt>loop_num</tt> variable</li>
+		<li>Print value of <tt>loop_num</tt> after it runs through the loop</li>
+		</ul>
+
+	<p>
+		<img class="center" src="images/AddSimpleRepeatLoop.png" alt="Add a loop that repeats 5 times and adds one to a variable">
+		
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game. Notice that all the items in our list are addressed. Most importantly we can see that <tt><b>loop_num</b></tt> goes from 0 to 5 proving that the loop ran 5 times.
+
+	<p>
+	<img class="center" src="images/AddSimpleRepeatLoopInGame.png" alt="Repeat statement running in game">
+
+	<p>
+		Sometimes we need to access a value of where in the loop we are at.  Other times we sometimes don't know how many times we need to loop (go through each enemy still alive in level). There is another type of loop that you can use called a <b><a href="gms2tutorials:///ShowHelp?keyword=repeat">for loop</a></b>.  A for loop looks a bit more complicated:
+		<ul>
+		<li>Starts with an initial value (often starts at 0 but doesn't have to)</li>
+		<li>Condition that when it is still true will keep looping (exit condition)</li>
+		<li>Do this after a pass through the loop </li>
+		</ul>
+
+		<p>
+			These three items are separated by a <b>;</b> (semi-colon). Add the following script:
+
+	<p>
+		<img class="center" src="images/ForLoopWithIndex.png" alt="Add a loop that repeats 5 times and adds one to a variable">
+
+	<p>
+			These above creates a new variable called <tt><b>i</b></tt>.  It exits the loop when i gets to 6 or above.  After each time through the loop <tt>i</tt> is incremented by <tt><b>1</b></tt>. We use the index value <tt><b>i</b></tt> to add spacing to the text as we will be adding 5 lines.
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. We should see 5 lines printing the value of the index <tt><b>i</b></tt>.
+
+	<p>
+	<img class="center" src="images/ForLoopWithIndexInGame.png" alt="If statement running in game">	
+
+<p>
+	Next up we will look at how to position objects in the game window.
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="page01.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="page03.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

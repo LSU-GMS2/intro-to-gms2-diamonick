@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch1 - Page 2</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Chapter 1 - Manipulating Text">
+		
+					<option value="page02.html">Variables</option>
+					<option value="page03.html">Data Types</option>
+				</optgroup>
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="../ch2/page01.html">If Statements</option>
+					<option value="../ch2/page02.html">Loops</option>
+					<option value="../ch2/page03.html">Positioning on Screen Part I</option>
+					<option value="../ch2/page05.html">Positioning on Screen Part III</option>
+					<option value="../ch2/page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="../ch3/page01.html">Moving NPC</option>
+					<option value="../ch3/page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+								<option value="../page01.html"><b>Hello World</b></option>
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+	
+	<p style="color:rgb(85, 109, 130)">
+	<b>Variables</b>
+	
+	<p>
+		Now we have hardcoded the string we are printing to the screen.  What if we wanted to greet the player with the day of the week.  We would need to dynamically change the text during the game to display what day it is.  What we do is we store the information in a <b><a href="gms2tutorials:///ShowHelp?keyword=scope">variable</a></b>.  
+
+	<p>
+		A variable is like a box that contains data.  The variable is the address of the box so that the computer knows where the information is stored.  In the below example the variable references the memory that the string holds the letters "Hello World!".
+
+	<p>
+		<img class="center" src="images/VariableAnimation.gif" alt="Illustration of computer science variable as a box">
+
+	<p>
+		Now we will add a variable to this game object.  Open <tt><b>obj_hello_world_text</b></tt> and press <tt><b>Variable Definitions</b></tt> button.  Then we add the <tt><b>Name</b></tt> <tt>text</tt> the <b>Default</b> value to <tt>Hello World!</tt> and the <b>Type</b> <tt>String</tt>.
+
+	<p>
+		<img class="center" src="images/DefineHelloWorldVariable.gif" alt="Creating new default variable called text in game object">
+
+	<p>
+		Go back to the <tt><b>Draw Event</b></tt> in <tt><b>obj_hello_world_text</b></tt> and replace the string text with the variable name <tt><b>text</b></tt>.
+
+	<p>
+		<img class="center" src="images/ChangeHardCodedToTextVar.png" alt="Replace hard coded string with variable name text">
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  You will see that it doesn't show the word <tt><b>text</b></tt> the name of the variable, but instead the value that is inside it <tt><b>Hello World!</b></tt>
+		
+	<p>
+		<img class="center" src="images/HelloWorldVariable.png" alt="Game running with variable being used instead of hard coded text">
+
+	<p>
+		Now you can also have multiple copies of a single object in the Room/Level.  Each copy is referred to as an instance.  Each instance can have a different value for the text variable.  To change this single instance open the room by <img style="vertical-align:middle" src="../images/Icon_LMB.png"> double left clicking on <tt><b>rm_hello_world</b></tt> then <img style="vertical-align:middle" src="../images/Icon_LMB.png"> double left clicking on the game object in the middle of the room. Then press the <b>Variables</b> button and it brings out another fly out window.  Press the <img style="vertical-align:middle" src="../images/Icon_Pencil.png"> <b>Pencil</b>  icon to edit the <b>Value</b>.  
+	
+	<p>
+		Type in something new like <tt><b>Hello Marco!</b></tt> (you can substitue Marco with your name if you prefer). This will make the change for this single object.  If you remove this (by pressing the minus icon where the pencil used to be) it will go back to its original default value of <tt><b>Hello World!</b></tt>.
+
+	<p>
+		<img class="center" src="images/InstanceChangeText.gif" alt="Go to instance of object in room and type hello Marco!">
+	
+	<p>
+		Now to show you that you can have the same object with different variable values for each instance lets drag another <tt><b>obj_hello_world_text</b></tt> into the room under the previous one:
+	<p>
+		<img class="center" src="images/SecondInstanceHelloWorld.png" alt="Drag another instance of object in room under previous one">
+
+	<p>
+		Repeat the above process of double clicking on this new instance and change its default <tt><b>Value</b></tt> to <tt><b>Nice to see you again...</b></tt>
+
+	<p>
+		<img class="center" src="images/NiceToSeeYou.png" alt="Change the second default to Nice to see you again...">
+
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.  Now you have the same game object with different values for the <tt><b>text</b></tt> variable that you set.
+		
+	<p>
+		<img class="center" src="images/TwoInstanceHWGame.png" alt="Run game with same object and two different messages">
+
+	<p>
+		Next up we will look at <b>Data Types</b>.
+	
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="../page01.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="page03.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch2 - Page 1</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+				<optgroup label="Logic, Positioning & Errors">
+					<option value="page01.html">If Statements</option>
+					<option value="page02.html">Loops</option>
+					<option value="page03.html">Positioning on Screen Part I</option>
+					<option value="page04.html">Positioning on Screen Part II</option>
+					<option value="page05.html">Positioning on Screen Part III</option>
+					<option value="page06.html">Errors</option>
+				</optgroup>
+				<optgroup label="Movement">
+					<option value="../ch3/page01.html">Moving NPC</option>
+					<option value="../ch3/page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<optgroup label="Chapter 1 - Manipulating Text">
+						<option value="../page01.html"><b>Hello World</b></option>
+						<option value="../ch1/page02.html">Variables</option>
+						<option value="../ch1/page03.html">Data Types</option>
+					</optgroup>
+	
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+	
+	<p style="color:rgb(85, 109, 130)">
+	<b>If Statements</b>
+	
+	<p>
+		We have looked at <b>Variables</b>, <b>Functions</b> and <b>Data Types</b> Now we are going to look at <b><a href="gms2tutorials:///ShowHelp?tag=language_features">conditional if statements</a></b>. This is used all of the time.  One of the next times we will see it will be for determining user input.  Has the user pressed a button on the keyboard?  We use if statements to check this.
+
+	<p>
+		In pseudo code this is what we are checking to see if the expression in between brackets resolves to true or false.  If the if statement is true then it runs what is between the bracket. An expression has to resolve to true or false (remember any real number over .5 resoles to true and all under it resolve to false).
+
+	<p class="code">
+		if (expression) <br>
+		{ <br>
+			&nbsp&nbsp&nbsp//do something...<br>
+		}	<br>
+
+	<p>
+		So as a sixth text printing we will be using a condition statement.  As an expression we will just use <tt><b>true</b></tt>.  True always resolves to true.  We use curly braces as we might want to do multiple things based on that if statement.  It will run all lines in-between the curly braces. So we can add:
+
+	<p class="code">
+		//Show result of if statement on sixth line<br>
+		if (true)<br>
+		{<br>
+			&nbsp&nbsp&nbspdraw_text(room_width * .5, line_height * 6, "The if statement is true" );<br>
+		}<br>
+	
+	<p>
+		<img class="center" src="images/AddMostBasicIfStatement.png" alt="Added a very basic if statement as the 6th text printing">
+
+	<p>
+		Now run the game by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game.Notice that it prints the message as the if statement resolved to true.
+
+	<p>
+		<img class="center" src="images/MostBasicIfStatementInGame.png" alt="Run game and see if statement resolve to true">
+
+	<p>
+		Now what happens if it resolves to false.  What if we wanted to do something when the statement resolved to false?  We can follow the if statement with an else statement.  This will only run if the if statement resolves to false. 
+		
+		<div class="note">
+			<p>
+				Note: Please be aware that you cannot put anything (except for a comment) between the last bracket from the if statement and the else.  It will not compile.
+		</div>
+
+		In pseudo code it would look like:
+
+	<p class="code">
+		if (expression) <br>
+		{ <br>
+			&nbsp&nbsp&nbsp//do something...<br>
+		}	<br>
+		else<br>
+		{<br>
+			&nbsp&nbsp&nbsp//do something else...<br>
+		}<br>
+
+	<p>
+		So lets add a different sentence for an else condition:
+
+	<p class="code">
+		else<br>
+		{<br>
+			&nbsp&nbsp&nbspdraw_text(room_width * .5, line_height * 6, "The if statement is false" );<br>
+		}<br>
+
+	<p>
+		<img class="center" src="images/MostBasicIfElse.png" alt="Most basic if else statement">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <b>Play Button</b> in the top menu bar to launch the game. Notice that it prints the same true message and not the false one.
+
+	<p>
+		<img class="center" src="images/MostBasicIfStatementInGame.png" alt="Run game false message does not show">
+
+	<p>
+		To see the false message you need to change the expression in parenthesis after the if statement to <tt><b>false</b></tt>.
+
+	<p>
+		<img class="center" src="images/MostBasicIfElseFalse.png" alt="Set if statement to false">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game. Now the <tt><b>true</b></tt> message no longer displays but is replaced by the false one.
+
+	<p>
+		<img class="center" src="images/MostBasicIfElseFalseInGame.png" alt="Run game false message now shows">
+
+	<p>
+		Lets look at a more practical expression.  We will use a <b>comparison operator</b>. This compares two values and returns a true or false.  The most common are:
+<ul>
+		<li>== (equals): <i>checks if value on both sides of the operand are the same</i></li>
+		<li>!= (not equals): <i>checks if value on both sides of the operand are different</i></li>
+		<li>> (greather than): <i>checks if value on the right hand operand is greater than the left had side</i></li>
+		<li>< (greather than): <i>checks if value on the right hand operand is less than the left had side</i></li>
+		<li>>= (greather than or equal): <i>checks if value on the right hand operand is greater than or equal to the left had side</i></li>
+		<li><= (greather than or equal): <i>checks if value on the right hand operand is less than or equal the left had side</i></li>
+		</ul>
+
+	<p>
+		Lets add a seventh line that checks to see if the person with the age is an adult or not.  We will use <tt><b>age >= 18</b></tt> to do this.
+		
+		<div class="note">
+			Note: >= 18 is functionally the same as > 17.  The choice is up to you, whatever more clearly expresses your objective.  I assume that to prove you are an adult you are looking for being 18 or over not greater than 17.
+		</div>
+
+	<p>
+		<img class="center" src="images/ComparisonOperator.png" alt="Add if statement with comparison operator">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game. Since I have <tt><b>age</b></tt> set to <tt><b>51</b></tt> I get the adult message as 51 is >= to 18.
+
+	<p>
+		<img class="center" src="images/ComparisonOperatorInGame.png" alt="Run game with comparison operator">
+
+	<p>
+		Lets add a eigth line that checks the return value of a function.  Remember that functions can return a variable, some return booleans and are usually used inside if conditional statements.  One of these in GameMaker is <b><a href="gms2tutorials:///ShowHelp?tag=keyboard_check">keyboard_check(key)</a></b>. You do not know what the return value of the function without looking in the manual.  This can be done by typing the function name into the help <tt><b>index</b></tt> tab or clicking the above link.  Look at the return value:
+
+			<div class="note">
+			Note: If you see NA this means the function returns no value, and is definitely not usable insinde an if statement.
+		</div>
+		
+	<p>
+		<img class="center" src="images/ReturnValueOfKeyboardCheck.png" alt="GameMaker manual showing keyboard_check function returning a boolean value">
+
+	<p>
+		The manual also tells you about what arguments you need to pass to the function.  In this case it is an enumerator of the key you want to check.  If our case we will want to check the space key: <tt><b>vk_space</b></tt>.  This function will return true every time the space button is held down and false if it is not.
+	
+	<p>
+		<img class="center" src="images/IfStatementWithFunction.png" alt="Add an if statement checking for the space button being pressed">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt> in the top menu bar to launch the game. Press the space bar and let go.  The message should change accordingly:
+
+	<p>
+		<img class="center" src="images/IfStatementWithFunctionInGame.gif" alt="If statement running in game checking for the space button being pressed">
+
+	<p>
+		Next up we will look at loops.
+
+		</div>
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="../ch1/page03.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="page02.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+

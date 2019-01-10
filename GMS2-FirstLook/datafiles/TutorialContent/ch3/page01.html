@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<!-- EDIT THIS-->
+		<title>Tutorial - GameMaker First Look - Ch3 - Page 1</title>
+		<!-- DO NOT EDIT THIS-->
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="../style.css" type="text/css" media="screen" title="style" charset="UTF-8"/>
+		<script type="text/javascript">
+			var changePage = function(){
+				var newPage = document.getElementById("page-select");
+				window.location.replace(newPage.value);
+				}
+		</script>
+
+	</head>
+
+<!-- EDIT THIS - This section is where you can add an index to your tutorial -->
+<body>
+<!-- EDIT THIS - Your Tutorial title -->
+	<h2 style="border-radius:0.5em 0.5em 0 0; margin:0;">Tutorial - First Look</h2>
+<!-- EDIT THIS - Here you list the pages in your tutorial, with the current one at the top -->
+		<div class="head">
+			<select id="page-select" onChange="changePage()">
+				
+
+				<optgroup label="Movement">
+					<option value="page01.html">Moving NPC</option>
+					<option value="page02.html">Moving Player</option>
+				</optgroup>
+				<optgroup label="---Previous Pages">
+					<optgroup label="Chapter 1 - Manipulating Text">
+						<option value="../page01.html"><b>Hello World</b></option>
+						<option value="../ch1/page02.html">Variables</option>
+						<option value="../ch1/page03.html">Data Types</option>
+					</optgroup>
+					<optgroup label="Logic, Positioning & Errors">
+					<option value="../ch2/page01.html">If Statements</option>
+					<option value="../ch2/page02.html">Loops</option>
+					<option value="../ch2/page03.html">Positioning on Screen Part I</option>
+					<option value="../ch2/page04.html">Positioning on Screen Part II</option>
+					<option value="../ch2/page05.html">Positioning on Screen Part III</option>
+					<option value="../ch2/page06.html">Errors</option>
+				</optgroup>
+				</optgroup>
+			</select>
+		</div>
+	
+<!-- EDIT THIS - Main tutorial body goes here -->
+<div class="body-scroll">
+	<p>
+	If you want to see tutorial in a separate web browswer window <a href="gms2tutorials:///openBrowser">click here</a>.
+	
+	<p style="color:rgb(85, 109, 130)">
+	<b>Moving NPC</b>
+
+	<p>
+		Now what is an NPC?  It is a <i>Non Playable Character</i> in game that moves through logic and a script and not by the controlle, mouse or keyboard.  Lets start by creating a new <img style="vertical-align:middle" src="../images/Icon_RMB.png"> <b>Room</b> and move it to the top of the list.  Call this room <tt><b>rm_movement</b></tt>. 
+	
+	<p>
+		<img class="center" src="images/AddRmMovement.gif" alt="Add rm_movement and move to top of list">	
+
+	<p>
+		<img style="vertical-align:middle" src="../images/Icon_RMB.png"> Right click on <b>Object</b> in the <tt><b>Resources</b></tt> menu and select <tt><b>Create Object</b></tt>.  Call this new object <tt><b>obj_movement_controller</b></tt>
+	
+	<p>
+		<img class="center" src="images/ObjMovementController.png" alt="Create object called obj_movement_controller">
+
+	<p>
+		<img style="vertical-align:middle" src="../images/Icon_LMB.png"> Left click on the <tt><b>Add Event</b></tt> button and select a <tt><b>Draw | Draw</b></tt> event:
+	
+	<p>
+		<img class="center" src="images/DrawDrawMovementController.png" alt="Add draw event to obj_movement_controller">
+
+	<p>
+		Now we have only looked at GameMaker functions that come with the engine.  We can also create our own functions.  Remember we can tell a function because it is a name (like a Variable) followed by a parenthesis with arguments: <tt><b>function_name(argument0, argument1...)</b></tt>. In this case we will write our own function with no arguments.  So we will need to make our own function.  Type the following in the draw event:
+	
+	<p>
+		<img class="center" src="images/CallAScript.png" alt="Add custom function to draw event">
+
+	<p>
+		So we need to create a script with the same name.  This means that the draw event will call this script every frame.  Right click on the <tt><b>Script</b></tt> title in the <tt><b>Resources</b></tt> tab and select <tt><b>Create Script</b></tt>.  Call it <tt><b>scr_movement_draw</b></tt> without parenthesis.
+	
+	<p>
+		<img class="center" src="images/ScrMovementDraw.png" alt="Create new script called scr_movement_draw">
+
+	<p>
+		Lets add a title and two rectangles in the scene. But lets set a title font.  In <tt><b>obj_movement_controller</b></tt> press <tt><b>Add Event</b></tt> and add a <tt><b>Create</b></tt> event.  Then add the following:
+	
+	<p>
+		<img class="center" src="images/CreateEventSelectNewFont.png" alt="Select new font in create event">
+
+	<p>
+		Add the following to the newly created <tt><b>scr_movement_draw</b></tt> script to draw the title.
+	
+	<p>
+		<img class="center" src="images/DrawTitleMovement.png" alt="Add title to draw event script">
+	
+	<p>
+		We need to add the <tt><b>obj_movement_controller</b></tt> object to the room. Remember this will call the function we just created from within the <tt><b>Draw</b></tt> event.
+	
+	<p>
+		<img class="center" src="images/AddMovementControllerToRoom.png" alt="Drag and drop obj_movement_controller to outside of room ">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now we see the function is being called as it displays the title.
+	
+	<p>
+		<img class="center" src="images/RunGameTitle.png" alt="Run the game and we see a title">
+
+	<p>
+		Now lets create two boxes that the square will start and end at. We have a new function to look at: <b><a href="gms2tutorials:///ShowHelp?tag=draw_rectangle">draw_rectangle(x1, y1, x2, y2, outline)</a></b>. In this case <tt><b>x1,y1</b></tt> are the top left corner in room pixels and <tt><b>x2, y2</b></tt> are the bottom right.  Outline if true means there is only an outline and if false it will be filled in.
+	
+	<p>
+		<img class="center" src="images/DrawSquareIllustration.gif" alt="Illustration of how a shape is drawn in draw_rectangle">
+
+	<p>
+		Draw a starting rectangle in the top left corner or the room and a green one in the bottom right by adding the following to <tt><b>scr_movement_draw</b></tt> script:
+	
+	<p>
+		<img class="center" src="images/AddTwoBoxes.png" alt="Add draw_rectangle script to scr_movement_draw">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. There are two outline of rectangles that will hold a square object shortly.
+	
+	<p>
+		<img class="center" src="images/TwoBoxesInGame.png" alt="Run game and see two rectangle outlines">
+
+	<p>
+		Lets create a copy of <tt><b>obj_square</b></tt>.  <img style="vertical-align:middle" src="../images/Icon_RMB.png">Right click on the object and select <tt><b>Duplicate</b></tt>:
+	
+	<p>
+		<img class="center" src="images/DuplicateSquare.png" alt="Duplicate obj_square">
+
+	<p>
+		Call it <tt><b>obj_square_movement</b></tt>:
+	
+	<p>
+		<img class="center" src="images/ObjSquareMovement.png" alt="Rename obj_square to obj_square_movement">
+
+	<p>
+		Drag <tt><b>obj_square_movement</b></tt> into <tt><b>rm_movement</b></tt>:
+	
+	<p>
+		<img class="center" src="images/DrawSquareMovementToRoom.png" alt="Drag and drop obj_square_movement into screen">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Woops, it is positioned in the same spot as the square we duplicated.  This is not where we wanted it.  We have made a square that starts at 64x and 64y. We want to center the sprite which is half a sprite width away being 32 pixels.  So we will position it at 96x by 96y.
+	
+	<p>
+		<img class="center" src="images/RunBadSquarePos.png" alt="Run game but square is in wrong position">
+		
+	<p>
+		Change the initial position of the square in the <tt><b>obj_square_movement: Create</b></tt> event:
+	
+	<p>
+		<img class="center" src="images/ChangeInitialPositionOfSquareMovement.png" alt="Drag and drop obj_square_movement into screen">
+		
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now the square is positioned exactly where we planned!
+	
+	<p>
+		<img class="center" src="images/RotatingSquareInBox.gif" alt="Run game and square is in the rectangle drawn">
+
+	<p>
+		To move the player we will use a new function <b><a href="gms2tutorials:///ShowHelp?tag=move_towards_point">move_towards_point( x, y, sp )</a></b>. <tt><b>x</b></tt> and <tt><b>y</b></tt> is the place in the room your are targeting.  <tt><b>sp</b></tt> stands for <b>Speed</b> and is how many pixels per frame that the sprite will move in.  Open <tt><b>obj_square_movement</b> and double click the <tt><b>Step</b></tt> event.  We need to enter the room target that we are moving towards.  This is one and half sprites from the bottom corner which puts us at 926x and 672y.  Let's make the <tt><b>sp 5</b></tt>.
+	
+	<p>
+		<img class="center" src="images/MoveTowardsPoint.png" alt="Add move_towards_point to step event in obj_square_movement">
+
+	<p>
+		Run the game again by pressing the <img style="vertical-align:middle" src="../images/Icon_RunProject.png"> <tt><b>Play Button</b></tt>. Now the square moves to the target just as we planned!
+	
+	<p>
+		<img class="center" src="images/SquareMovement.gif" alt="Run game and square moves to new target">
+
+	<p>
+		On the next page we will move a player controlled character.
+
+</div>
+
+<br>
+</p>
+<p>
+
+</div>
+
+<div class="footer">
+	<div class="buttons">
+		<div class="clear">
+			<div style="float:left">
+				<a href="../ch2/page06.html"  class="prev">
+				<div id="button-prev"></div> 
+				</a>
+			</div>
+			<div style="float:right"> <!-- Set the next page to go to here -->
+				<a href="page02.html" class="next">
+					<div id="button-next"></div>
+				</a>
+			</div>
+		</div>	
+	</div>
+<!-- Footer copyright notice - set this to your own or whatever is required (remove the text but leave the <h5> tags to just have the bar) -->
+<h5>&copy; Copyright Mauby Games 2018</h5>
+</div>
+
+</body>
+</html>
+
+
+
