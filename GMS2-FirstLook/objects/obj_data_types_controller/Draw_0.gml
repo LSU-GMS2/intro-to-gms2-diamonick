@@ -1,4 +1,4 @@
-/// @description Draw 3 Data Types to Screen
+ /// @description Draw 3 Data Types to Screen
 // Display a real number data type
 
 //Center the text based on its x,y position in the room
@@ -65,5 +65,22 @@ repeat(5)
 }
 
 //Print what the value that loop_num is up after repeating 5 times on line 12.
+draw_text(room_width * 0.5, line_height * 12, "loop_num now equals: " + string(loop_num) );
+
+//For loop that includes an index indicating which pass through loop
+for(i = 0; i < 6; i=i+1)
+{
+	draw_text(room_width * 0.5, line_height * (13 + i), "For loop: " + string(i) );
+}
+
 //Return the alignment to its default setting
 draw_set_halign(fa_left);
+
+//Draw line under text
+draw_set_color(c_yellow);
+
+draw_line(0, line_height * 19, room_width, line_height * 19);
+
+draw_line(0, line_height * 25, room_width, line_height * 25); 
+
+draw_set_color(c_white);
