@@ -1,6 +1,6 @@
 # GameMaker Assignment #1
 
-John Smith
+Diamonick Dunn
 
 This is my submission for Assignment #1.
 
